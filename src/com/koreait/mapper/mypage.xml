@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Mypage">
+	<select id="getReservation" resultType="myresdto"
+		parameterType="string">
+		SELECT REDATE, NAME, STATE FROM M_MATCHING m JOIN M_USERDATA u ON m.M_EMAIL =
+		u.EMAIL
+		WHERE STATE != '청소완료' AND (SERVICENUM, RETYPE)
+		IN (SELECT RENUM, RETYPE FROM C_PARTRESERVATION WHERE EMAIL =
+		#{useremail})
+		OR STATE != '청소완료' AND (SERVICENUM, RETYPE)
+		IN (SELECT RENUM, RETYPE FROM C_RESERVATION WHERE EMAIL = #{useremail})
+		ORDER BY REDATE ASC
+	</select>
+	<select id="getReservation2" resultType="myresdto"
+		parameterType="string">
+		SELECT SERVICENUM, REDATE, RETYPE, NAME, STATE FROM M_MATCHING m JOIN
+		M_USERDATA u ON m.M_EMAIL = u.EMAIL
+		WHERE STATE = '청소완료' AND (SERVICENUM, RETYPE)
+		IN (SELECT RENUM, RETYPE FROM C_PARTRESERVATION WHERE EMAIL =
+		#{useremail})
+		OR STATE = '청소완료' AND (SERVICENUM, RETYPE)
+		IN (SELECT RENUM, RETYPE FROM C_RESERVATION WHERE EMAIL = #{useremail})
+		ORDER BY REDATE ASC
+	</select>
+	
+	<!-- 번호확인 -->
+	<select id="checkpw" parameterType="string"
+		resultType="mypagedto">
+		SELECT * FROM WEB.C_USERDATA WHERE PASSWORD = #{userpw}
+	</select>
+
+	<select id="getHome" parameterType="string"
+		resultMap="mypagedata">
+		SELECT * FROM WEB.C_HOMEDATA WHERE EMAIL = #{useremail}
+	</select>
+	
+	<select id="getData" parameterType="string" resultMap="mypage">
+		SELECT * FROM C_USERDATA WHERE EMAIL = #{useremail}
+	</select>
+
+	<resultMap type="mypagedto" id="mypagedata">
+		<result column="EMAIL" property="useremail" />
+		<result column="ADDR" property="addr" />
+		<result column="ADDRDETAIL" property="addrdetail" />
+	</resultMap>
+	
+	<resultMap type="mypagedto" id="mypage">
+		<result column="EMAIL" property="useremail" />
+		<result column="USERNAME" property="username" />
+		<result column="PHONE" property="userphone" />
+		<result column="CARDNUM" property="cardnum" />
+	</resultMap>
+
+	<!-- 정보수정 -->
+	<update id="modify" parameterType="mypagedto">
+		UPDATE WEB.C_USERDATA SET
+		PHONE = #{userphone},
+		PASSWORD = #{userpw}
+		WHERE
+		EMAIL = #{useremail}
+
+	</update>
+
+	<!-- 지역수정 -->
+	<update id="updateaddr" parameterType="mypagedto">
+		UPDATE WEB.C_HOMEDATA
+		SET
+		ADDR=#{addr}, ADDRDETAIL = #{addrdetail}
+		WHERE EMAIL = #{useremail}
+	</update>
+
+
+	<!-- 회원 탈퇴 -->
+	<delete id="delete" parameterType="string">
+		DELETE FROM WEB.C_USERDATA
+		WHERE EMAIL = #{useremail}
+	</delete>
+
+	<!-- 카드번호 입력 -->
+	<update id="card" parameterType="mypagedto">
+		UPDATE WEB.C_USERDATA
+		SET CARDNUM
+		= #{cardnum},
+		CARDDATE = #{carddate},
+		CVC = #{cvc},
+		CARDPASSWORD = #{cardpw}
+		WHERE EMAIL = #{useremail}
+	</update>
+</mapper>

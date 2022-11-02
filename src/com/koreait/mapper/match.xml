@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Match">
+	<select id="matchlist" parameterType="string" resultType="matchlistdto">
+			SELECT DISTINCT
+			m.SERVICENUM,u.USERNAME,h.ADDR, m.RETYPE, m.STATE, m.EMAIL, m.REDATE,p.RETIME, r.RETIME
+			FROM  C_RESERVATION r
+			RIGHT OUTER JOIN M_MATCHING m ON r.REDATE = m.REDATE
+			LEFT OUTER JOIN C_PARTRESERVATION p ON p.REDATE = m.REDATE
+			LEFT OUTER JOIN	C_USERDATA u ON u.EMAIL = m.EMAIL  
+			RIGHT OUTER JOIN C_HOMEDATA h ON h.ADDRNUM = r.ADDRNUM OR h.ADDRNUM = p.ADDRNUM 
+			WHERE m.STATE ='매칭중' AND h.ADDR LIKE '%'||#{workspace}||'%' ORDER BY SERVICENUM
+	</select>
+	<select id="history" parameterType="string" resultType="matchlistdto">
+		SELECT DISTINCT
+			m.SERVICENUM,u.USERNAME,h.ADDR, m.RETYPE, m.STATE, m.EMAIL, m.REDATE,p.RETIME, r.RETIME
+			FROM  C_RESERVATION r
+			RIGHT OUTER JOIN M_MATCHING m ON r.REDATE = m.REDATE
+			LEFT OUTER JOIN C_PARTRESERVATION p ON p.REDATE = m.REDATE
+			LEFT OUTER JOIN	C_USERDATA u ON u.EMAIL = m.EMAIL  
+			RIGHT OUTER JOIN C_HOMEDATA h ON h.ADDRNUM = r.ADDRNUM OR h.ADDRNUM = p.ADDRNUM 
+		WHERE m.M_EMAIL = #{manageremail} ORDER BY SERVICENUM
+	</select>
+	<select id="progress" parameterType="string" resultType="matchlistdto">
+		SELECT DISTINCT
+			m.SERVICENUM,u.USERNAME,h.ADDR, m.RETYPE, m.STATE, m.EMAIL, m.REDATE,p.RETIME, r.RETIME
+			FROM  C_RESERVATION r
+			RIGHT OUTER JOIN M_MATCHING m ON r.REDATE = m.REDATE
+			LEFT OUTER JOIN C_PARTRESERVATION p ON p.REDATE = m.REDATE
+			LEFT OUTER JOIN	C_USERDATA u ON u.EMAIL = m.EMAIL  
+			RIGHT OUTER JOIN C_HOMEDATA h ON h.ADDRNUM = r.ADDRNUM OR h.ADDRNUM = p.ADDRNUM 
+		WHERE m.M_EMAIL = #{manageremail} AND m.STATE NOT IN '청소완료' ORDER BY SERVICENUM
+	</select>
+	<select id="matchdetail" parameterType="_int" resultType="matchdto">
+		SELECT * FROM M_MATCHING WHERE SERVICENUM = #{servicenum}
+	</select>
+	<update id="setmatching" parameterType="matchdto">
+		 UPDATE M_MATCHING
+		SET M_EMAIL = #{m_email}, STATE = #{state} WHERE SERVICENUM = #{servicenum}
+	</update>
+	<update id="cancelmatch" parameterType="_int">
+		 UPDATE M_MATCHING
+		SET M_EMAIL = NULL, STATE = '매칭중' WHERE SERVICENUM = #{servicenum}
+	</update>
+	<update id="finishclean" parameterType="_int">
+		 UPDATE M_MATCHING
+		SET STATE = '청소완료' WHERE SERVICENUM = #{servicenum}
+	</update>
+	<update id="visitmatch" parameterType="_int">
+		 UPDATE M_MATCHING
+		SET STATE = '자택방문' WHERE SERVICENUM = #{servicenum}
+	</update>
+	<update id="cleanmatch" parameterType="_int">
+		 UPDATE M_MATCHING
+		SET STATE = '청소중' WHERE SERVICENUM = #{servicenum}
+	</update>
+	<select id="matchdetailRes" parameterType="_int" resultType="matchlistdto">
+		SELECT DISTINCT
+			m.SERVICENUM, u.USERNAME,h.ADDR, h.ADDRDETAIL, m.RETYPE, m.REDATE, r.RETIME, m.STATE
+			FROM  C_RESERVATION r
+			RIGHT OUTER JOIN M_MATCHING m ON r.REDATE = m.REDATE
+			LEFT OUTER JOIN	C_USERDATA u ON u.EMAIL = m.EMAIL  
+			RIGHT OUTER JOIN C_HOMEDATA h ON h.ADDRNUM = r.ADDRNUM
+		WHERE m.SERVICENUM = #{servicenums}
+	</select>
+	<select id="matchdetailPar" parameterType="_int" resultType="matchlistdto">
+		SELECT DISTINCT
+m.SERVICENUM, u.USERNAME,h.ADDR, m.RETYPE, m.STATE, m.REDATE, p.RETIME
+FROM  C_PARTRESERVATION p
+RIGHT OUTER JOIN M_MATCHING m ON p.REDATE = m.REDATE
+LEFT OUTER JOIN	C_USERDATA u ON u.EMAIL = m.EMAIL  
+RIGHT OUTER JOIN C_HOMEDATA h ON h.ADDRNUM = p.ADDRNUM OR h.ADDRNUM = p.ADDRNUM 
+WHERE m.SERVICENUM = #{servicenums}
+	</select>
+
+	
+</mapper>

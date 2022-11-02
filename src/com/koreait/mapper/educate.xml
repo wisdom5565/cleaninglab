@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Educate">
+	<select	id="List" resultType="edudatedto" parameterType="string">
+		SELECT * FROM M_EDUDATELIST WHERE CITY = #{city} ORDER BY EDUDATE
+	</select>
+	<select	id="Detail" resultType="educatedto" parameterType="_int">
+		SELECT M_EDUDATELIST.EDUDATENUM, M_EDUDATELIST.EDUTIME, M_EDUDATELIST.EDUDATE, M_EDUDATELIST.LOCATION, M_EDULOCATION.MAPPOINT, M_EDULOCATION.PARKING FROM M_EDUDATELIST INNER JOIN M_EDULOCATION ON M_EDUDATELIST.LOCATION = M_EDULOCATION.LOCATION WHERE M_EDUDATELIST.EDUDATENUM =  #{edudatenum}
+	</select>
+	<insert id="reservation" parameterType="edulistdto">
+		INSERT INTO M_EDULIST VALUES(#{location},#{email},#{edudatenum})
+	</insert>
+	<select	id="MyEdu" resultType="educatedto" parameterType="string">
+		select d.EDUTIME, d.LOCATION, d.EDUDATE, c.MAPPOINT, c.PARKING, d.EDUDATENUM
+			from M_EDUDATELIST d, M_EDULIST l, M_EDULOCATION c
+				where l.EMAIL = #{manageremail} AND d.EDUDATENUM = l.EDUDATENUM AND c.LOCATION = d.LOCATION
+	</select>
+	<delete id="deleteEdu" parameterType="string">
+		DELETE FROM M_EDULIST WHERE EMAIL = #{manageremail}
+	</delete>
+	
+</mapper>

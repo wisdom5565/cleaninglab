@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="FAQ">
+	<select id="getFaqCnt" resultType="_int">
+		SELECT COUNT(*) FROM C_ETC WHERE ETCTYPE = 'FAQ'
+	</select>
+	<select id="getFaqCntWithKey" resultType="_int" parameterType="string">
+		SELECT COUNT(*) FROM C_ETC
+		WHERE TITLE LIKE ('%${keyword}%') AND ETCTYPE = 'FAQ'
+	</select>
+	<select id="getFaqList" parameterType="hashmap" resultType="faqdto">
+		SELECT * FROM
+			(SELECT ROWNUM R, D.* FROM
+				(SELECT * FROM C_ETC) D
+			) B
+		WHERE B.R BETWEEN #{startRow} AND #{endRow} AND ETCTYPE = 'FAQ'
+	</select>
+	<select id="getFaqListWithKey" parameterType="hashmap" resultType="faqdto">
+		SELECT * FROM
+			(SELECT ROWNUM R, D.* FROM
+				(SELECT * FROM C_ETC WHERE TITLE LIKE ('%${keyword}%')) D
+			) B
+		WHERE B.R BETWEEN #{startRow} AND #{endRow} AND ETCTYPE = 'FAQ'
+	</select>
+	<select id="getFaqDetail" parameterType="String" resultType="faqdto">
+		SELECT * FROM C_ETC WHERE ETCTYPE = 'FAQ' AND TITLE = #{title}
+	</select>
+</mapper>

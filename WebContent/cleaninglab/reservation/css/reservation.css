@@ -1,0 +1,134 @@
+@charset "UTF-8";
+
+#reOuter{
+	width: 500px;
+	height: 600px;
+	margin: 0 auto;
+	background-color: #F4F4F4;
+	margin-top: 40px;
+    margin-bottom: 40px;
+}
+#reBox{
+	transform: translate(13%, 50%);
+	width: 400px;
+	height:80px;
+	line-height:35px;
+	text-align:center;
+	cursor: pointer;
+	border:1px;
+	border-style:solid;
+	border-radius: 10px;
+	border-color :#F4F4F4;
+	background-color: white;
+	margin-bottom: 40px;
+	padding-top: 5px;
+}
+#reOuter >a {
+	text-decoration: none;
+	color: black;
+}
+#reBox >div{
+	font-size: 20px;
+	font-weight: bold;
+}
+#reOuter > a > #reBox:hover {
+	border-color : black;
+}
+#reAddOuter{
+	border:1px;
+	border-style:solid;
+	width: 500px;
+	background-color: white;
+	border-color:#F4F4F4; 
+	border-bottom-color: white;	
+	cursor: pointer;
+}
+#reAddTitle{
+	font-size: 15px;
+	font-weight: bold;
+	border-color: white;	
+	cursor: pointer;
+}
+#reAddName{
+	font-weight: bold;
+	padding: 15px;
+}
+#reAddButt{
+	clear: both;
+	text-align: center;
+}
+#reAddButt > input{
+	margin-top :20px;
+	background-color: white;
+	border: none;
+	text-align: center;
+	font-weight: bold;
+	cursor: pointer;
+}
+
+#reCheck, #recModi{
+	float: right;
+	width: 60px;
+	height:30px;
+	text-align: center;
+	border-color: #F4F4F4;
+	border-radius:5px;
+	background-color: #F4F4F4;
+	margin-left: 10px;
+	cursor: pointer;
+}
+button:after {
+   content: none;
+}
+#reAddButt2{
+	background-color: white;
+	color: black !important;
+}
+.modal-fade, .modal-fade2,.modal-fade3{ 
+	display: none; 
+	position: fixed; 
+	z-index: 20000; 
+	left: 23%; 
+	width: 50%; 
+	padding: 20px; 
+	background-color: none; 
+} 
+.modal-fade2{
+	height: 100%;
+    padding: 0px;
+}
+.modal-header{
+	background: #F2F4F5;
+	height: 40px;
+}
+.modal-body{
+	height: 300px;
+	padding: 0px;
+}
+.modal-dialog2 {
+    position: relative;
+    top: -40px;
+    left: -40px;
+}
+.close{
+	color: black !important;
+}
+.modal-backdrop.in {
+    opacity: 0;
+}
+.modal-header .close {
+    margin-top: -10px;
+}
+.modal-footer{
+	padding: 0px;
+}
+.modal-backdrop.in {
+    width: 20000%;
+    height: 1000% !important;
+    left: -200px;
+    top: -500px
+}
+input[type="text"]:focus {
+    border-color: transparent;
+    box-shadow: none;
+}

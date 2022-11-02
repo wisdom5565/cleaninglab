@@ -1,0 +1,11 @@
+@charset "UTF-8";
+
+#nav .menu {
+	color: black;
+	font-weight: 700;
+}
+
+#nav .menu:hover {
+	color: black;
+	background-color: #eeeeee;
+}

@@ -1,0 +1,405 @@
+@charset "UTF-8";
+
+#reSubOuter2{
+	width: 700px;
+	height:auto;
+	margin: 0 auto;
+	text-align:left;
+}
+.re_tttt{
+	font-weight: bold;
+	font-size: 20px;
+}
+.re_tttt2{
+	font-weight: 500;
+	font-size: 18px;
+	margin-top: 18px;
+	margin-bottom: 18px;
+}
+#rel_dateStr, #rel_TimeStr{
+	width:200px;
+	margin-right: 10px;
+	float: left;
+}
+.datepicker,.table-condensed {
+  	width: 300px;
+ 	height:200px;
+  	position: absolute;
+  	
+}
+.datepicker{
+	top:40px;
+}
+.table-condensed{
+	background-color: white;
+	border: 1px solid;
+  	border-color: lightgrey; 	
+}
+#btn_diray2{
+	width: 500px;
+	height: 300px;
+	margin-top: 18px;
+}
+#rel_TimeStr{
+	margin-left: 30px;
+}
+#btn_diray1{
+	float: left;
+}
+#reText2{
+	margin-top: 30px;
+	font-size: 15px;
+	font-weight: 600;
+}
+#reText3{
+	margin-top: 10px;
+	font-size: 13px;
+	font-weight: 500;
+}
+#reText4{
+	margin: 10px;
+	font-weight: 500;
+	color: red;
+}
+
+#re_calc{
+	margin-top: 20px;
+}
+#re_calcInner{
+	margin-bottom: 60px;
+    position: relative;
+    top: 30px;
+}
+.calcCh {
+    background-color: white;
+    border: none;
+    color: #05C3DE !important;
+    font-size: 15px;
+    font-weight: 600;
+    margin-left: 540;
+}
+button.calcCh:hover {
+    background-color: white;
+}
+#reSize5{
+	border-radius: 16px;
+	width: 32px;
+	height: 32px;
+	padding: 0px;
+	line-height : 16px;
+	position :relative;
+	top : -3px;
+	left: 10px;
+	background-color: #05C3DE;
+	float: none;
+}
+#btn_diray1{
+	width: 32px;
+	height: 40px;
+}
+.modal-backdrop.in {
+    width: 20000%;
+    height: 1000% !important;
+    left: -180px;
+    top: -500px
+}
+.modal-dialog3{
+    position: relative;
+    width: 500px;
+    top: -95px;
+}
+#modal-body {
+    height: 580px;
+    padding: 0px;
+    background-image: url(/cleaninglab/images/smartM1.png);
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+}
+.modal-header{
+    padding: 0px;
+    padding-right: 10px;
+    padding-top: 5px;
+}
+#nextImgB{
+	width: 62px;
+	background-color: white;
+	padding-bottom: 10px;
+    cursor: pointer;
+    background: 0 0;
+    border: 0;
+    color :gray !important;
+}
+#close {
+    padding: 10px;
+}
+.imgChB{
+	position: relative;
+    width: 62px;
+    width: 62px;
+    top: 50%;
+}
+#imgChBR{
+	float: right;
+	left: 25px;
+}
+#imgChBL{
+	display: none;
+	float: left;
+}
+
+.addr{
+	border: 1px solid;
+	border-color: white;
+	border-bottom-color: #05C3DE;
+	height: 50px !important;
+	
+}
+.buthome, .buthome2 {
+	height:38px;
+    background-color: transparent;
+    color: #05C3DE !important;
+}
+button:hover {
+	background-color: transparent;
+}
+.modal-dialog {
+    width: 650px;
+    margin: 30px auto;
+}
+
+.modal-dialog {
+    position: relative;
+    top: -100px;
+    left: -40px;
+    box-shadow: 0 5px 15px rgb(0 0 0 / 50%);
+}
+
+#addcT {
+	background-color: white;
+    position: relative;
+    width: 650px;
+    height: 550px;
+    padding: 30px;
+    overflow-y: auto;
+}
+.modal-header {
+    padding:0px;
+    padding-top: 3px;
+    padding-right: 10px;
+}
+.modal-footer {
+	background-color: white;
+}
+/* input[type=text]{
+	border: 1px solid;
+	border-color: white;
+	border-bottom-color: #05C3DE;
+	height: 50px !important;
+	margin-bottom: 10px;
+} */
+.modal-dialog2 {
+    top: -60px;
+}
+#reDetailAdd{
+	width: 450px;
+    float: left;
+}
+.buthome2{
+	 display: none;
+}
+#reText2{
+	clear: both;
+}
+#lastCalc{
+	margin-top: 30px;
+}
+#addGift{
+	width: 450px;
+	float: left;
+	border: 1px solid;
+	border-color: white;
+	border-bottom-color: #05C3DE;
+	margin-bottom: 20px;
+}
+.coupBWar{
+	color: #05C3DE;
+	clear: both;
+	margin-bottom:10px;
+	display: none;
+}
+#calcM {
+    height: 510px;
+}
+#reText6{
+	font-weight: bold;
+	font-size: 30px;
+	margin-top: 30px;
+}
+.reCardOuter{
+	width: 550px;
+	margin: 0 auto;
+}
+.reCnumOuter{
+	height: 100px;
+    width: 550px;
+    background-color: gainsboro;
+    margin-top: 20px;
+}
+.reCnumOuter2{
+	height: 100px;
+    width: 260px;
+    background-color: gainsboro;
+    margin-top: 30px;
+    float: left;
+}
+#reCnumOuter2{
+	margin-right: 30px;
+}
+.reCnumOuter3{
+	height: 100px;
+	clear: both;
+    position: relative;
+    top: 30px;	
+}
+#reCnumIn{
+	height:50px;
+	background-color: gainsboro;
+}
+#reCnumIn2{
+	height:50px;
+	text-align: center;
+}
+#reCnum1, #reCnum2, #reCnum3, #reCnum4 {
+    width: 100px;
+    height:50px;
+    background-color: gainsboro;
+    float: left;
+    margin-left: 30px;
+    font-weight: bold;
+}
+#reCdate, #rebirth,#reCpw{
+	background-color: gainsboro;
+	height:50px;
+	font-weight: bold;
+}
+#reText2 > #teBIn {
+    float: right;
+}
+#teBIn{
+	position: relative;
+    top: -15px;
+}
+.reCnumOuter4{
+	position: relative;
+	text-align: right;
+	top: 45px;
+}
+#addCardlast{
+	background-color: gainsboro;
+	color: black !important;
+}
+#Ccount, #Pcount{
+	margin: 5px;
+	color: #05C3DE;
+	font-weight: bold;
+}
+#addcoup, #addpoint, #addcard{
+	font-weight: bolder;
+}
+#couponM{
+	height: 500px;
+}
+#couOuter{
+    width: 500px;
+    height: 100%;
+    margin: 0 auto;
+}
+#couPrice{
+    font-weight: bold;
+    font-size: x-large;
+    float: left;
+}
+#couDate{
+	color: gray;
+	clear: both;
+}
+#couOuterIn{
+	margin-top: 20px;
+}
+input[type="checkbox"] {
+    border: 1px solid gainsboro;
+    opacity: 1;
+    width: 40px;
+    height: 40px;
+    float: right;
+    border-radius: 20px;
+	transform: translateY(10px);
+}
+input[type="checkbox"]:focus {
+    outline: 0;
+    transform: translateY(10px);
+}
+input[type="checkbox"]:checked{
+	 content:'✔';
+	 background-color: #05C3DE;
+}
+#CUseNow{
+	border: none;
+	font-size: x-large;
+	font-weight: bolder;
+	width: 400px;
+}
+#Distext, #Distext2{
+	width: 50%;
+    float: left;
+    border: none;
+    height: 30px;
+    margin-top: 10px;
+    margin-bottom : 20px;
+    font-weight: bolder;
+    color: gray !important;
+}
+#Distext2 {
+	text-align: right;
+	font-weight: bolder;
+	color: black !important;
+    font-size: 20px;
+}
+.ddT, .nowpoDis {
+    margin-bottom: 25px;
+}
+#pointChkB{
+	transform: translate(1650%, 9%);
+    width: 20px;
+    height: 20px;
+    position: relative;
+    left: -480px;
+    top: -4px;
+    border-color: #05C3DE;
+}
+#pointLabel{
+	display: block;
+    cursor: pointer;
+    font-size: 15px;
+    position: relative;
+    transform: translate(55%,12%);
+    color: #05C3DE;
+    float: right;
+}
+#totalprice{
+	border: none;
+	font-weight: bolder;
+	font-size: x-large;
+}
+#addCo2{
+	margin: 0 auto;
+	margin-top: 20px;
+	text-align: center;
+	background-color: #05C3DE;
+	transform: translate(0%,300%);
+	float: right;
+}
+#addcoupB2 {
+    float: right;
+    transform: translate(50%,-170%);
+}

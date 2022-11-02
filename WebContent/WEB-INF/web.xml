@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
+	id="WebApp_ID" version="4.0">
+	<display-name>project</display-name>
+	<welcome-file-list>
+		<!-- <welcome-file>index.html</welcome-file>-->
+		<!-- <welcome-file>index.htm</welcome-file>-->
+		<welcome-file>index.jsp</welcome-file>
+		<welcome-file>default.html</welcome-file>
+		<welcome-file>default.htm</welcome-file>
+		<welcome-file>default.jsp</welcome-file>
+	</welcome-file-list>
+	<servlet>
+		<servlet-name>UserFrontController</servlet-name>
+		<servlet-class>com.koreait.cleaninglab.user.UserFrontController</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>UserFrontController</servlet-name>
+		<url-pattern>*.us</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>ManagerFrontController</servlet-name>
+		<servlet-class>com.koreait.cleaninglab.manager.ManagerFrontController</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ManagerFrontController</servlet-name>
+		<url-pattern>*.ma</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>ManagerMyPageFrontController</servlet-name>
+		<servlet-class>com.koreait.cleaninglab.manager.mypage.ManagerMyPageFrontController</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ManagerMyPageFrontController</servlet-name>
+		<url-pattern>*.mmy</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>MypageFrontController</servlet-name>
+		<servlet-class>com.koreait.cleaninglab.mypage.MypageFrontController</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>MypageFrontController</servlet-name>
+		<url-pattern>*.my</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>FaqFrontController</servlet-name>
+		<servlet-class>com.koreait.cleaninglab.faq.FaqFrontController</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>FaqFrontController</servlet-name>
+		<url-pattern>*.fq</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>ServiceFrontController</servlet-name>
+		<servlet-class>com.koreait.cleaninglab.service.ServiceFrontController</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ServiceFrontController</servlet-name>
+		<url-pattern>*.se</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>PointFrontController</servlet-name>
+		<servlet-class>com.koreait.cleaninglab.point.PointFrontController</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>PointFrontController</servlet-name>
+		<url-pattern>*.po</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>ReviewFrontController</servlet-name>
+		<servlet-class>com.koreait.cleaninglab.review.ReviewFrontController</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ReviewFrontController</servlet-name>
+		<url-pattern>*.re</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>NoticeFrontController</servlet-name>
+		<servlet-class>com.koreait.cleaninglab.notice.NoticeFrontController</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>NoticeFrontController</servlet-name>
+		<url-pattern>*.no</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>GiftFrontController</servlet-name>
+		<servlet-class>com.koreait.cleaninglab.gift.GiftFrontController</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>GiftFrontController</servlet-name>
+		<url-pattern>*.gi</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>ResController</servlet-name>
+		<servlet-class>com.koreait.cleaninglab.reservation.ResController</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ResController</servlet-name>
+		<url-pattern>*.rs</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>ResdataController</servlet-name>
+		<servlet-class>com.koreait.cleaninglab.reservation.ResdataController</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ResdataController</servlet-name>
+		<url-pattern>*.rd</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>MatchFrontController</servlet-name>
+		<servlet-class>com.koreait.cleaninglab.match.MatchFrontController</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>MatchFrontController</servlet-name>
+		<url-pattern>*.mac</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>EduFrontController</servlet-name>
+		<servlet-class>com.koreait.cleaninglab.edu.EduFrontController</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>EduFrontController</servlet-name>
+		<url-pattern>*.edu</url-pattern>
+	</servlet-mapping>
+	   <servlet>
+  	<servlet-name>QuestionFrontController</servlet-name>
+  	<servlet-class>com.koreait.cleaninglab.question.QuestionFrontController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>QuestionFrontController</servlet-name>
+  	<url-pattern>*.qu</url-pattern>
+  </servlet-mapping>
+</web-app>

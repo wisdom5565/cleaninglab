@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="Review">
+	 <select id="getMyReview" resultType="reviewdto" parameterType="reviewdto">
+		SELECT TITLE, CONTENT FROM C_REVIEW WHERE RENUM = #{renum} AND RETYPE = #{retype}
+	 </select>
+	 <select id="getReviewCnt" resultType="_int">
+		SELECT COUNT(*) FROM C_REVIEW
+	</select>
+	 <select id="getReviewList" parameterType="hashmap" resultType="reviewdto">
+	 	SELECT * FROM
+			(SELECT ROWNUM R, D.* FROM
+				(SELECT * FROM C_REVIEW) D
+			) B
+		WHERE B.R BETWEEN #{startRow} AND #{endRow} ORDER BY REGDATE DESC
+	 </select>
+	 <select id="getReviewDetail" parameterType="string" resultType="reviewdto">
+	 	SELECT * FROM C_REVIEW WHERE TITLE = #{title}
+	 </select>
+	 
+	 <insert id="insertReview" parameterType="reviewdto">
+	 	INSERT INTO WEB.C_REVIEW (RENUM, RETYPE, STATE, EMAIL, TITLE, CONTENT, REGDATE, M_NAME)
+	 	VALUES (#{renum}, #{retype}, '청소완료', #{email}, #{title}, #{content}, TO_CHAR(SYSDATE, 'YYYY/MM/DD'), #{m_name})
+	 </insert>
+	 
+	 <update id="updateReview" parameterType="reviewdto">
+	 	UPDATE C_REVIEW SET TITLE = #{title}, CONTENT = #{content} WHERE RENUM = #{renum} AND RETYPE = #{retype}
+	 </update>
+	 
+	 <delete id="deleteReview" parameterType="reviewdto">
+	 	DELETE FROM C_REVIEW WHERE RENUM = #{renum} AND RETYPE = #{retype}
+	 </delete>
+</mapper>

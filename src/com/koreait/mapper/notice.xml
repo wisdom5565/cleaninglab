@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Notice">
+	<select id="getNoticeCnt" resultType="_int">
+		SELECT COUNT(*) FROM C_ETC WHERE ETCTYPE = '공지'
+	</select>
+	<select id="getNoticeList" resultType="noticedto" parameterType="hashmap">
+		SELECT * FROM
+			(SELECT ROWNUM R, D.* FROM
+				(SELECT * FROM C_ETC) D
+			) B
+		WHERE B.R BETWEEN #{startRow} AND #{endRow} AND ETCTYPE = '공지'
+	</select>
+	<select id="getNoticeDetail" parameterType="string" resultType="noticedto">
+		SELECT * FROM C_ETC WHERE ETCTYPE = '공지' AND TITLE = #{title}
+	</select>
+</mapper>

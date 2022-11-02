@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+  <typeAliases>
+  	<typeAlias alias="faqdto" type="com.koreait.cleaninglab.faq.dao.FaqDTO"/>
+	<typeAlias alias="managerdto" type="com.koreait.cleaninglab.manager.dao.ManagerDTO" />
+	<typeAlias alias="userdto" type="com.koreait.cleaninglab.user.dao.UserDTO" />
+	<typeAlias alias="pointdto" type="com.koreait.cleaninglab.point.dao.PointDTO" />
+	<typeAlias alias="myresdto" type="com.koreait.cleaninglab.mypage.dao.MyReservationDTO" />
+	<typeAlias alias="noticedto" type="com.koreait.cleaninglab.notice.dao.NoticeDTO" />
+	<typeAlias alias="reviewdto" type="com.koreait.cleaninglab.review.dao.ReviewDTO" />
+	<typeAlias alias="giftdto" type="com.koreait.cleaninglab.gift.dao.GiftDTO" />
+	<typeAlias alias="resdto" type="com.koreait.cleaninglab.reservation.dao.ResDTO"/>
+  	<typeAlias alias="addrdto" type="com.koreait.cleaninglab.reservation.dao.AddrDTO"/>
+  	<typeAlias alias="edudatedto" type="com.koreait.cleaninglab.edu.dao.EduDateDTO" />
+	<typeAlias alias="educatedto" type="com.koreait.cleaninglab.edu.dao.EducateDTO" />
+	<typeAlias alias="edulistdto" type="com.koreait.cleaninglab.edu.dao.EduListDTO" />
+	<typeAlias alias="matchdto" type="com.koreait.cleaninglab.match.dao.MatchDTO" />
+	<typeAlias alias="matchlistdto" type="com.koreait.cleaninglab.match.dao.MatchListDTO" />
+	<typeAlias alias="questiondto" type="com.koreait.cleaninglab.question.dao.QuestionDTO"/>
+	<typeAlias alias="mypagedto" type="com.koreait.cleaninglab.mypage.dao.MypageDTO"/>
+  </typeAliases>
+  <environments default="development">
+    <environment id="development">
+      <transactionManager type="JDBC"/>
+      <dataSource type="POOLED">
+        <property name="driver" value="oracle.jdbc.OracleDriver"/>
+        <property name="url" value="jdbc:oracle:thin:@localhost:1521:XE"/>
+        <property name="username" value="web"/>
+        <property name="password" value="web"/>
+      </dataSource>
+    </environment>
+  </environments>
+  <mappers>
+	<mapper resource="com/koreait/mapper/user.xml" />
+    <mapper resource="com/koreait/mapper/mypage.xml"/>
+    <mapper resource="com/koreait/mapper/faq.xml"/>
+    <mapper resource="com/koreait/mapper/manager.xml" />
+    <mapper resource="com/koreait/mapper/point.xml" />
+    <mapper resource="com/koreait/mapper/notice.xml" />
+    <mapper resource="com/koreait/mapper/review.xml" />
+    <mapper resource="com/koreait/mapper/gift.xml" />
+    <mapper resource="com/koreait/mapper/reservation.xml"/>
+    <mapper resource="com/koreait/mapper/educate.xml" />
+	<mapper resource="com/koreait/mapper/match.xml" />
+	<mapper resource="com/koreait/mapper/question.xml" />
+  </mappers>
+</configuration>
+

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="Res">
+	<sql id="modify">
+		<choose>
+			<when test="cardnum !=null">
+				<![CDATA[CARDNUM=#{cardnum}, CARDDATE=#{carddate}, CVC=#{cvc}, CARDPASSWORD=#{cardpw}]]>
+			</when>
+			<when test="point !=null">
+				<![CDATA[POINT =#{point}]]>
+			</when>
+		</choose>
+
+	</sql>
+	
+	<sql id="table">
+		<choose>
+			<when test="retype=='부분'">
+				<![CDATA[(SELECT MAX(RENUM) FROM C_PARTRESERVATION)]]>
+			</when>
+			<otherwise>
+				<![CDATA[(SELECT MAX(RENUM) FROM C_RESERVATION)]]>
+			</otherwise>
+		</choose>
+
+	</sql>
+
+	<select id="addrlist" resultType="addrdto" parameterType="string">
+		SELECT ADDRNUM,ADDR,ADDRDETAIL,HOMENAME FROM C_HOMEDATA WHERE EMAIL = #{email}
+	</select>
+	<select id="addrlist2" resultType="addrdto" parameterType="hashmap">
+		SELECT ADDRNUM, ADDR,ADDRDETAIL, AREA, ANIMAL, ANIMALDETAIL, KIDS, CCTV, PARKING, HOMENAME,FRONTKEY,HOMEKEY,CLEANTOOL,HOMEWAY, C_USERDATA.PHONE as PHONE FROM C_HOMEDATA 
+		LEFT OUTER JOIN C_USERDATA ON  C_USERDATA.EMAIL = C_HOMEDATA.EMAIL
+		WHERE ADDRNUM = #{addrnum} AND C_HOMEDATA.EMAIL = #{email}
+	</select>
+	<insert id="addrinsert" parameterType="addrdto">
+		INSERT INTO C_HOMEDATA VALUES (HOME_NO.NEXTVAL , #{email}, #{addr}, #{addrdetail},#{area},#{animal},#{animaldetail},#{kids},#{cctv},#{parking},#{homename},#{frontkey},#{homekey},#{cleantool},#{homeway})
+	</insert>
+	<update id="addrmodify" parameterType="addrdto">
+		UPDATE C_HOMEDATA SET ADDR = #{addr}, ADDRDETAIL = #{addrdetail}, AREA = #{area}, ANIMAL = #{animal}, ANIMALDETAIL = #{animaldetail}, KIDS = #{kids}, CCTV = #{cctv}, PARKING = #{parking}, HOMENAME = #{homename},
+		FRONTKEY = #{frontkey}, HOMEKEY = #{homekey},CLEANTOOL = #{cleantool},HOMEWAY = #{homeway} WHERE ADDRNUM = #{addrnum} and EMAIL = #{email}
+	</update>
+	<select	id="userinfor" resultType="userdto" parameterType="string">
+		SELECT * FROM C_USERDATA WHERE EMAIL = #{email}
+	</select>
+	<update	id="giftuse"  parameterType="userdto">
+		UPDATE C_USERDATA SET <include refid="modify"/> WHERE EMAIL = #{useremail}
+	</update>
+	<select	id="coupon" resultType="giftDTO" parameterType="string">
+		SELECT * FROM C_GIFT WHERE GIFTTYPE = '쿠폰' and EMAIL = #{email} and USE ='미사용'
+	</select>
+	<select	id="usechk" resultType="giftDTO" parameterType="giftDTO">
+		SELECT * FROM C_GIFT WHERE GIFTTYPE = #{gifttype} and EMAIL = #{email} and GIFTNUM = #{giftnum} and USE ='미사용'
+	</select>
+	<update	id="userMod"  parameterType="giftDTO">
+		UPDATE C_GIFT SET USE ='#{use}', USEDATE = TO_CHAR(SYSDATE,'YYYY/MM/DD HH:mm') WHERE GIFTTYPE = #{gifttype} and EMAIL = #{email} and  GIFTNUM = #{giftnum}
+	</update>
+	<insert id="presinsert" parameterType="resdto">
+		INSERT INTO C_PARTRESERVATION VALUES (RES_NO.NEXTVAL , #{retype}, #{addrnum}, #{redate},#{retime},#{email},#{servicearea},#{servicecnt},#{notice},#{trashway},#{paystate},TO_CHAR(SYSDATE,'YYYY/MM/DD HH:mm'),#{price})
+	</insert>
+	<insert id="matchinsert" parameterType="resdto">
+		INSERT INTO M_MATCHING VALUES (<include refid="table"/>, #{redate},#{retype},'매칭중','',#{email})
+	</insert>
+</mapper>
+
+
+
+
+
+
+
+
+

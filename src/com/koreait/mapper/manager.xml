@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Manager">
+	<select id="checkEmail" parameterType="string" resultType="_int">
+		SELECT COUNT(*) FROM M_USERDATA WHERE EMAIL = #{manageremail}
+	</select>
+
+	<insert id="join" parameterType="managerdto">
+		INSERT INTO WEB.M_USERDATA
+		(EMAIL, PASSWORD, NAME, BIRTH, PHONE, BANKNAME, BANKACCOUNT,
+		ADDR,ADDRDETAIL, WORKSPACE, EDUCOUNT)
+		VALUES (#{manageremail},
+		#{managerpw},#{managername},
+		#{managerbirth},#{managerphone},
+		#{managerbank}, #{manageraccount},
+		#{addr},
+		#{addrdetail},#{workspace},#{educount})
+	</insert>
+
+	<select id="login" resultType="managerdto"
+		parameterType="hashmap">
+		SELECT * FROM WEB.M_USERDATA WHERE EMAIL =
+		#{manageremail} AND PASSWORD = #{managerpw}
+	</select>
+
+	<select id="getData" parameterType="string"
+		resultMap="managerdata">
+		SELECT * FROM WEB.M_USERDATA WHERE EMAIL = #{manageremail}
+	</select>
+
+	<resultMap type="managerdto" id="managerdata">
+		<result column="EMAIL" property="manageremail" />
+		<result column="PASSWORD" property="managerpw" />
+		<result column="NAME" property="managername" />
+		<result column="PHONE" property="managerphone" />
+		<result column="BANKNAME" property="managerbank" />
+		<result column="BANKACCOUNT" property="manageraccount" />
+		<result column="ADDR" property="addr" />
+		<result column="ADDRDETAIL" property="addrdetail" />
+		<result column="WORKSPACE" property="workspace" />
+	</resultMap>
+
+
+	<update id="updatePw" parameterType="managerdto">
+		UPDATE WEB.M_USERDATA SET
+		PASSWORD = #{managerpw}
+		WHERE EMAIL = #{manageremail}
+	</update>
+
+	<update id="updateAddr" parameterType="managerdto">
+		UPDATE WEB.M_USERDATA SET
+		ADDR = #{addr}, ADDRDETAIL =#{addrdetail}
+		WHERE EMAIL = #{manageremail}
+	</update>
+	<update id="updateBank" parameterType="managerdto">
+		UPDATE WEB.M_USERDATA SET
+		BANKNAME = #{managerbank},
+		BANKACCOUNT = #{manageraccount}
+		WHERE EMAIL =
+		#{manageremail}
+	</update>
+	<update id="updatePhone" parameterType="managerdto">
+		UPDATE WEB.M_USERDATA SET
+		PHONE = #{managerphone}
+		WHERE EMAIL = #{manageremail}
+	</update>
+
+	<update id="updateWorkspace" parameterType="managerdto">
+		UPDATE WEB.M_USERDATA
+		SET WORKSPACE = #{workspace} WHERE EMAIL = #{manageremail}
+	</update>
+
+	<delete id="delete" parameterType="string">
+		DELETE FROM WEB.M_USERDATA
+		WHERE EMAIL = #{manageremail}
+	</delete>
+
+	<select id="relogin" resultType="managerdto"
+		parameterType="string">
+		SELECT * FROM M_USERDATA WHERE EMAIL = #{manageremail}
+	</select>
+
+	<update id="educntplus" parameterType="string">
+		UPDATE M_USERDATA SET
+		EDUCOUNT = 1 WHERE EMAIL = #{manageremail}
+	</update>
+	<update id="setUpdateEduCnt" parameterType="string">
+		UPDATE M_USERDATA SET
+		EDUCOUNT = 3 WHERE EMAIL = #{manageremail}
+	</update>
+	<update id="setDeleteEduCnt" parameterType="string">
+		UPDATE M_USERDATA SET
+		EDUCOUNT = 0 WHERE EMAIL = #{manageremail}
+	</update>
+	<select id="findEmail" resultType="string">
+		SELECT EMAIL FROM WEB.M_USERDATA
+		WHERE NAME = #{managername} AND PHONE=#{managerphone}
+	</select>
+	
+	<select id="findPw" parameterType="string" resultType="_int">
+		SELECT COUNT(*) FROM M_USERDATA WHERE EMAIL = #{manageremail}
+	</select>
+
+	<update id="changePw" parameterType="managerdto">
+		UPDATE WEB.M_USERDATA SET
+		PASSWORD = #{managerpw}
+		WHERE EMAIL = #{manageremail} AND PHONE = #{managerphone}
+	</update>
+</mapper>
